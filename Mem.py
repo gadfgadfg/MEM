@@ -54,7 +54,7 @@ class MemeGeneratorApp:
         self.edit_image_button = tk.Button(self.input_frame, text="Редактировать изображение", command=self.open_image_editor)
         self.edit_image_button.grid(row=0, column=2, rowspan=1, padx=5, sticky="ew")
 
-        self.settings_button = tk.Button(self.input_frame, text="Настройки", command=self.open_settings_window)
+        self.settings_button = tk.Button(self.input_frame, text="Настройки текста", command=self.open_settings_window)
         self.settings_button.grid(row=1, column=2, rowspan=1, padx=5, sticky="ew")
 
         self.preview_frame = tk.Frame(master)
@@ -491,8 +491,8 @@ class MemeGeneratorApp:
             return
 
         try:
-            img = self.modified_image if self.modified_image else self.original_image
-
+            # Create a new copy of the image for each preview
+            img = self.modified_image.copy() if self.modified_image else self.original_image.copy()
             draw = ImageDraw.Draw(img)
 
             font_style = ""
